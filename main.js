@@ -1,7 +1,16 @@
+interfaz = new Interfaz;
+
+function preload() {
+  interfaz.cargarInterfaz();
+  
+}
+
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1280, 720);
+  interfaz.pintarInterfaz();
+
 }
 
 function draw() {
-  background(220);
+
 }
