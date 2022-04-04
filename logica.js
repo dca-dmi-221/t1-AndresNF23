@@ -1,5 +1,0 @@
-class Logica{
-    constructor(){
-        
-    }
-}
