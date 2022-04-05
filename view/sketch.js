@@ -16,12 +16,15 @@ function setup() {
   createCanvas(1280, 720);
   logica.setup();
 
+  logica.createVolumeSlider();
 }
 
 function draw() {
 
   interfaz.pintarInterfaz();
   logica.drawSongs(1012, 200)
+  logica.volume();
+  logica.drawInfo()
 }
 
 function mousePressed() {

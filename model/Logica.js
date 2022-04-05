@@ -79,13 +79,9 @@ class Logica {
                 file: loadSound('./Temp3/Ending4.mp3'),
             },
         ]
+
         this.playlistNumber = 0;
         this.songIndex = 0;
-    }
-
-    createVolumeSlider() {
-        this.volumeSlider = createSlider(0.0, 1.0, 0.5, 0.01);
-        this.volumeSlider.position(758, 514);
     }
 
     setup() {
@@ -94,9 +90,12 @@ class Logica {
         this.playlist.push(new Playlist(0, "Primera Temporada", [this.songs[0], this.songs[1], this.songs[2], this.songs[3]]));
         this.playlist.push(new Playlist(1, "Segunda Temporada", [this.songs[4], this.songs[5], this.songs[6], this.songs[7]]));
         this.playlist.push(new Playlist(2, "Segunda Temporada", [this.songs[8], this.songs[9], this.songs[10]]));
+    }
 
+    //Lo hizo el monitor Daniel
+    createVolumeSlider() {
         this.volumeSlider = createSlider(0.0, 1.0, 0.5, 0.01);
-        this.volumeSlider.position(478, 932);
+        this.volumeSlider.position(758, 514);
     }
 
     loadFont() {
@@ -193,7 +192,6 @@ class Logica {
         }
     }
 
-
     drawSongs(posX, posY) {
 
         for (let index = 0; index < this.playlist[this.playlistNumber].songs.length; index++) {
@@ -208,5 +206,16 @@ class Logica {
             text(this.playlist[this.playlistNumber].songs[index].artist, posX, posYplus + (index * 60))
         }
 
+    }
+
+    drawInfo() {
+
+        fill(255)
+        textSize(36)
+        textFont(this.bold)
+        text(this.playlist[this.playlistNumber].songs[this.songIndex].name, 480, 325)
+        textFont(this.regular)
+        textSize(20)
+        text(this.playlist[this.playlistNumber].songs[this.songIndex].artist, 480, 365)
     }
 }
