@@ -79,10 +79,15 @@ class Logica {
                 file: loadSound('./Temp3/Ending4.mp3'),
             },
         ]
-
         this.playlistNumber = 0;
+        this.songIndex = 0;
     }
 
+    createVolumeSlider(){
+        this.volumeSlider = createSlider(0.0, 1.0, 0.5, 0.01);
+        this.volumeSlider.position(758, 514);
+    }
+    
     setup() {
 
         this.playlist = []
