@@ -79,10 +79,12 @@ class Logica {
                 file: loadSound('./Temp3/Ending4.mp3'),
             },
         ]
+
         this.playlistNumber = 0;
     }
+
     setup() {
-        //Array de las playlist
+
         this.playlist = []
         this.playlist.push(new Playlist(0, "Primera Temporada", [this.songs[0], this.songs[1], this.songs[2], this.songs[3]]));
         this.playlist.push(new Playlist(1, "Segunda Temporada", [this.songs[4], this.songs[5], this.songs[6], this.songs[7]]));
@@ -92,11 +94,70 @@ class Logica {
         this.volumeSlider.position(478, 932);
     }
 
-
     loadFont() {
-        //Cargamos fuentes de las carpetas
+
         this.regular = loadFont("assets/Poppins-Regular.ttf")
         this.bold = loadFont("./assets/Poppins-Bold.ttf")
     }
 
+    buttons() {
+
+        console.log()
+
+        if (mouseX > 88 && mouseX < 374 && mouseY > 180 && mouseY < 314) {
+
+            console.log("Playlist1")
+            this.playlistNumber = this.playlist[0].id;
+            console.log(this.playlistNumber)
+        }
+
+        if (mouseX > 88 && mouseX < 374 && mouseY > 360 && mouseY < 495) {
+
+            console.log("Playlist2")
+            this.playlistNumber = this.playlist[1].id;
+            console.log(this.playlistNumber)
+        }
+
+        if (mouseX > 88 && mouseX < 374 && mouseY > 532 && mouseY < 662) {
+
+            console.log("Playlist3")
+            this.playlistNumber = this.playlist[2].id;
+            console.log(this.playlistNumber)
+        }
+
+        if (mouseX > 615 && mouseX < 662 && mouseY > 502 && mouseY < 545) {
+
+            console.log("Play/Pause")
+        }
+
+        if (mouseX > 545 && mouseX < 590 && mouseY > 502 && mouseY < 545) {
+
+            console.log("prev")
+        }
+
+        if (mouseX > 688 && mouseX < 732 && mouseY > 502 && mouseY < 545) {
+
+            console.log("next")
+        }
+    }
+
+    playButton() {
+
+    }
+
+    drawSongs(posX, posY) {
+
+        for (let index = 0; index < this.playlist[this.playlistNumber].songs.length; index++) {
+
+            let posYplus = posY + 20;
+            fill(0)
+            textSize(18);
+            textFont(this.bold)
+            text(this.playlist[this.playlistNumber].songs[index].name, posX, posY + (index * 60))
+            textSize(14);
+            textFont(this.regular)
+            text(this.playlist[this.playlistNumber].songs[index].artist, posX, posYplus + (index * 60))
+        }
+
+    }
 }
