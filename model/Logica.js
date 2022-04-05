@@ -81,4 +81,14 @@ class Logica{
             },
         ] 
     }
+    setup(){
+        //Array de las playlist
+        this.playlist = []
+        this.playlist.push(new Playlist(0, "Primera Temporada", [this.songs[0], this.songs[1], this.songs[2], this.songs[3]]));
+        this.playlist.push(new Playlist(1, "Segunda Temporada", [this.songs[4], this.songs[5], this.songs[6], this.songs[7]]));
+        this.playlist.push(new Playlist(2, "Segunda Temporada", [this.songs[8], this.songs[9], this.songs[10]]));
+
+        this.volumeSlider = createSlider(0.0, 1.0, 0.5, 0.01);
+        this.volumeSlider.position(478, 932);
+    }
 }
