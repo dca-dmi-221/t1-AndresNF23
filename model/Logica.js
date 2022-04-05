@@ -83,11 +83,11 @@ class Logica {
         this.songIndex = 0;
     }
 
-    createVolumeSlider(){
+    createVolumeSlider() {
         this.volumeSlider = createSlider(0.0, 1.0, 0.5, 0.01);
         this.volumeSlider.position(758, 514);
     }
-    
+
     setup() {
 
         this.playlist = []
@@ -107,18 +107,23 @@ class Logica {
 
     buttons() {
 
-        console.log()
-
         if (mouseX > 88 && mouseX < 374 && mouseY > 180 && mouseY < 314) {
 
+
             console.log("Playlist1")
+            this.playlist[this.playlistNumber].songs[this.songIndex].file.stop();
+            this.songIndex = 0
             this.playlistNumber = this.playlist[0].id;
             console.log(this.playlistNumber)
+
+
         }
 
         if (mouseX > 88 && mouseX < 374 && mouseY > 360 && mouseY < 495) {
 
             console.log("Playlist2")
+            this.playlist[this.playlistNumber].songs[this.songIndex].file.stop();
+            this.songIndex = 0
             this.playlistNumber = this.playlist[1].id;
             console.log(this.playlistNumber)
         }
@@ -126,29 +131,68 @@ class Logica {
         if (mouseX > 88 && mouseX < 374 && mouseY > 532 && mouseY < 662) {
 
             console.log("Playlist3")
+            this.playlist[this.playlistNumber].songs[this.songIndex].file.pause();
+            this.songIndex = 0
             this.playlistNumber = this.playlist[2].id;
             console.log(this.playlistNumber)
+
         }
 
         if (mouseX > 615 && mouseX < 662 && mouseY > 502 && mouseY < 545) {
 
             console.log("Play/Pause")
+            if (this.playlist[this.playlistNumber].songs[this.songIndex].file.isPlaying()) {
+                this.playlist[this.playlistNumber].songs[this.songIndex].file.pause();
+            } else {
+                this.playlist[this.playlistNumber].songs[this.songIndex].file.play();
+            }
         }
 
         if (mouseX > 545 && mouseX < 590 && mouseY > 502 && mouseY < 545) {
 
             console.log("prev")
+            this.jumpSong('prev')
+            this.playlist[this.playlistNumber].songs[this.songIndex].file.play();
         }
 
         if (mouseX > 688 && mouseX < 732 && mouseY > 502 && mouseY < 545) {
 
             console.log("next")
+            this.jumpSong('next')
+            this.playlist[this.playlistNumber].songs[this.songIndex].file.play();
         }
     }
 
-    playButton() {
+    //Lo hice en monitoría
+    volume() {
 
+        this.playlist[this.playlistNumber].songs[this.songIndex].file.setVolume(this.volumeSlider.value())
     }
+
+    //Lo hizo el monitor Daniel
+    jumpSong(mode) {
+
+        let jumper = 1;
+        let verify = false;
+
+        if (mode === "next") {
+            jumper = 1;
+            verify = this.songIndex + 1 < this.playlist[this.playlistNumber].songs.length
+        } else if (mode === "prev") {
+            jumper = -1;
+            verify = this.songIndex - 1 > 0
+        }
+
+        if (verify) {
+
+            this.playlist[this.playlistNumber].songs[this.songIndex].file.stop();
+            this.songIndex += jumper;
+        } else {
+            this.playlist[this.playlistNumber].songs[this.songIndex].file.stop();
+            this.songIndex = 0;
+        }
+    }
+
 
     drawSongs(posX, posY) {
 
